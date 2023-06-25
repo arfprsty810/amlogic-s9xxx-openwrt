@@ -172,7 +172,7 @@ custom_files() {
 # Rebuild OpenWrt firmware
 rebuild_firmware() {
     cd ${imagebuilder_path}
-    echo -e "${STEPS} Start building OpenWrt with Image Builder..."
+    echo -e "${STEPS} Start building ArfWrt with opewnwrt Image Builder..."
 
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
