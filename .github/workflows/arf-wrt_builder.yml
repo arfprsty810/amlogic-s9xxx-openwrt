@@ -170,11 +170,11 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           body: |
             ### ArfWrt Image information
+            Openwrt ImageBuild custom for s905x-b860h-v1/v
             - Default IP: 192.168.1.1
             - Default username: root
             - Default password: none
-            - Default WIFI is OFF
-            ### Install to EMMC
-            - Login to OpenWrt → System → Amlogic Service → Install OpenWrt
+            - Default WIFI username: root
+            - Default WIFI password: none
             ### OpenWrt Image Verification
             - sha256sum
