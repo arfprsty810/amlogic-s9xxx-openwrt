@@ -57,7 +57,7 @@ on:
         type: choice
         options:
           - -ophub
-          - @arf.prsty_
+          - -arf.prsty_
 
 env:
   TZ: America/New_York
