@@ -162,7 +162,7 @@ jobs:
         uses: ncipollo/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
-          tag: OpenWrt_imagebuilder_${{ env.RELEASES_TAG }}_${{ env.PACKAGED_OUTPUTDATE }}
+          tag: ArfWrt_s905x-${{ _STB_B860H.v1/v2_TAG }}_${{ env.PACKAGED_OUTPUTDATE }}
           artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
           allowUpdates: true
           removeArtifacts: false
