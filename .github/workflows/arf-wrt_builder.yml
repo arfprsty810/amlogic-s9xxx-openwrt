@@ -100,7 +100,7 @@ on:
 
 env:
   TZ: America/New_York
-  IMAGEBUILDER_SH: config-openwrt/imagebuilder/imagebuilder.sh
+  IMAGEBUILDER_SH: config-openwrt/arf-wrt/imagebuilder.sh
 
 jobs:
   build:
