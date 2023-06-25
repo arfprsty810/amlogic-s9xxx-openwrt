@@ -57,7 +57,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -arf.wrt
 
 env:
   TZ: America/New_York
