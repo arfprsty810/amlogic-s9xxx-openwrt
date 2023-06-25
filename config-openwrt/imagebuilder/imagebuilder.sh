@@ -197,15 +197,11 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn \
-        \
-        php8 php8-cgi php8-fpm php8-mod-ctype php8-mod-curl php8-mod-dom php8-mod-fileinfo \
-        php8-mod-filter	php8-mod-gettext php8-mod-gmp php8-mod-iconv php8-mod-mbstring \
-        php8-mod-opcache php8-mod-pcntl	php8-mod-pdo php8-mod-session php8-mod-zip \
-        \
-        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm \
+        adb kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-huawei-cdc-ncm \
         kmod-usb-net-cdc-eem kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core \
         kmod-usb-net kmod-usb-net-cdc-ether kmod-usb2 kmod-usb3 \
+        \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
         ${config_list} \
         "
