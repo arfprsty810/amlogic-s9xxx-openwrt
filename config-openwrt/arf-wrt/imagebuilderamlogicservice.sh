@@ -21,8 +21,8 @@
 # Instructions:  Download OpenWrt firmware from the official OpenWrt,
 #                Use Image Builder to add packages, lib, theme, app and i18n, etc.
 #
-# Command: ./config-openwrt/imagebuilder/imagebuilder.sh <source:branch>
-#          ./config-openwrt/imagebuilder/imagebuilder.sh openwrt:21.02.3
+# Command: ./config-openwrt/arf-wrt/imagebuilder.sh <source:branch>
+#          ./config-openwrt/arf-wrt/imagebuilder.sh openwrt:21.02.3
 #
 #======================================== Functions list ========================================
 #
@@ -40,8 +40,8 @@
 make_path="${PWD}"
 openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
-custom_files_path="${make_path}/config-openwrt/imagebuilder/files"
-custom_config_file="${make_path}/config-openwrt/imagebuilder/config"
+custom_files_path="${make_path}/config-openwrt/arf-wrt/files"
+custom_config_file="${make_path}/config-openwrt/arf-wrt/config"
 
 # Set default parameters
 STEPS="[\033[95m STEPS \033[0m]"
@@ -202,11 +202,6 @@ rebuild_firmware() {
         kmod-usb-net-cdc-ether kmod-usb2 \
         \
         adb \
-        \
-        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils \
-        kmod-ath kmod-ath9k kmod-common kmod-ath9k-htc kmod-cfg80211 \
-        kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
-        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
         \
         luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
