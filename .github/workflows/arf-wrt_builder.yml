@@ -5,7 +5,7 @@
 # Download from: https://downloads.openwrt.org/releases
 #                https://downloads.immortalwrt.org/releases
 #=====================================================================================
-name: ArfWrt_OpenWrt_ImageBuilder
+name: OpenWrt_ImageBuilder
 on:
   repository_dispatch:
   workflow_dispatch:
