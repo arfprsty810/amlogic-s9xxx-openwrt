@@ -172,7 +172,7 @@ custom_files() {
 # Rebuild OpenWrt firmware
 rebuild_firmware() {
     cd ${imagebuilder_path}
-    echo -e "${STEPS} Start building ArfWrt with opewnwrt Image Builder..."
+    echo -e "${STEPS} Start building OpenWrt with Image Builder..."
 
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
@@ -202,11 +202,6 @@ rebuild_firmware() {
         kmod-usb-net-cdc-ether kmod-usb2 \
         \
         adb \
-        \
-        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils \
-        kmod-ath kmod-ath9k kmod-common kmod-ath9k-htc kmod-cfg80211 \
-        kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
-        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
         \
         ${config_list} \
         "
