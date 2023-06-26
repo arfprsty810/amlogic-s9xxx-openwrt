@@ -6,7 +6,7 @@
 #                https://downloads.immortalwrt.org/releases
 #=====================================================================================
 
-name: Build OpenWrt with ImageBuilder
+name: OpenWrt_ImageBuilder_with_AmlogicService
 
 on:
   repository_dispatch:
