@@ -197,6 +197,10 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
+        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem kmod-usb-net-cdc-ether \
+        kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net adb \
+        kmod-usb-net-cdc-ether kmod-usb2 \
+        \
         ${config_list} \
         "
 
