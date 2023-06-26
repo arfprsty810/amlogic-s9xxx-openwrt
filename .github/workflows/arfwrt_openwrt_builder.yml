@@ -76,10 +76,10 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "arfprsty810/kernel"
+        default: "arfprsty810/amlogic-s9xxx-openwrt"
         type: choice
         options:
-          - arfprsty810/kernel
+          - arfprsty810/amlogic-s9xxx-openwrt
           - ophub/kernel
       kernel_usage:
         description: "Set the tags of the kernel."
@@ -142,7 +142,7 @@ jobs:
 
       - name: Packaging OpenWrt
         if: ${{ steps.imagebuilder.outputs.status }} == 'success' && !cancelled()
-        uses: arfprsty810/amlogic-s9xxx-openwrt@main
+        uses: ophub/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/bin/targets/*/*/*rootfs.tar.gz
           openwrt_board: ${{ inputs.openwrt_board }}
