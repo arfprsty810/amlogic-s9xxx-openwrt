@@ -184,17 +184,10 @@ on:
       kernel_usage:
         description: "Set the tags of the kernel."
         required: false
-        default: "arf.prsty"
+        default: "stable"
         type: choice
         options:
-          - arf.prsty
-      builder_name:
-        description: "Set OpenWrt builder signature."
-        required: false
-        default: "ARF-WRT"
-        type: choice
-        options:
-          - ARF-WRT
+          - stable
 env:
   TZ: America/New_York
   IMAGEBUILDER_SH: config-openwrt/arf-wrt/imagebuilderamlogicservice.sh
