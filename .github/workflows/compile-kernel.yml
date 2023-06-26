@@ -20,70 +20,15 @@ on:
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "5.4.1_5.10.1"
+        default: "5.15.1_6.1.1"
         type: choice
         options:
           - 5.4.1_5.10.1
           - 5.15.1_6.1.1
           - 5.4.1
-          - 5.4.237
-          - 5.4.238
-          - 5.4.239
-          - 5.4.240
-          - 5.4.241
-          - 5.4.242
-          - 5.4.243
-          - 5.4.244
-          - 5.4.245
-          - 5.4.246
-          - 5.4.247
-          - 5.4.248
           - 5.10.1
-          - 5.10.175
-          - 5.10.176
-          - 5.10.177
-          - 5.10.178
-          - 5.10.179
-          - 5.10.180
-          - 5.10.181
-          - 5.10.182
-          - 5.10.183
-          - 5.10.184
-          - 5.10.185
           - 5.15.1
-          - 5.15.103
-          - 5.15.104
-          - 5.15.105
-          - 5.15.106
-          - 5.15.107
-          - 5.15.108
-          - 5.15.109
-          - 5.15.110
-          - 5.15.111
-          - 5.15.112
-          - 5.15.113
-          - 5.15.114
-          - 5.15.115
-          - 5.15.116
-          - 5.15.117
-          - 5.15.118
           - 6.1.1
-          - 6.1.20
-          - 6.1.21
-          - 6.1.22
-          - 6.1.23
-          - 6.1.24
-          - 6.1.25
-          - 6.1.26
-          - 6.1.27
-          - 6.1.28
-          - 6.1.29
-          - 6.1.30
-          - 6.1.31
-          - 6.1.32
-          - 6.1.33
-          - 6.1.34
-          - 6.1.35
       kernel_auto:
         description: "Auto use the latest kernel"
         required: false
@@ -108,11 +53,11 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-arf.prsty_"
+        default: "-ophub"
         type: choice
         options:
           - -ophub
-          - -arf.prsty_
+          - -yourname
 
 env:
   TZ: America/New_York
@@ -145,7 +90,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: arfprsty810/amlogic-s9xxx-armbian@main
+        uses: ophub/amlogic-s9xxx-armbian@main
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
