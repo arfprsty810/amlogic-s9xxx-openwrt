@@ -201,6 +201,11 @@ rebuild_firmware() {
         kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net adb\
         kmod-usb-net-cdc-ether kmod-usb2 \
         \
+        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils \
+        kmod-ath kmod-ath9k kmod-common kmod-ath9k-htc kmod-cfg80211 \
+        kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
+        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
+        \
         luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
         ${config_list} \
