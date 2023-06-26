@@ -5,6 +5,7 @@
 # Download from: https://downloads.openwrt.org/releases
 #                https://downloads.immortalwrt.org/releases
 #=====================================================================================
+name: ArfWrt_ImageBuilder_$env.RELEASES_TAG
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -176,4 +177,3 @@ jobs:
             - Default WIFI password: none
             ### OpenWrt Image Verification
             - sha256sum
-name: ArfWrt_ImageBuilder_${{ env.RELEASES_TAG }}
