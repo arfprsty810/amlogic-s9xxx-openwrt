@@ -1,10 +1,10 @@
 #==========================================================================
-# Description: Compile the kernel
+# Description: Compile stable kernel
 # Copyright (C) 2021 https://github.com/unifreq/openwrt_packit
-# Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
+# Copyright (C) 2021 https://github.com/ophub/kernel
 #==========================================================================
 
-name: OpenWrt_ArfWrt_Kernel_Builder
+name: Compile arf.prsty_ Kernel
 
 on:
   repository_dispatch:
@@ -49,10 +49,17 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-arf.prsty"
+        default: "-arf.prsty_"
         type: choice
         options:
-          - -arf.prsty
+          - -arf.prsty_
+      kernel_config:
+        description: "Set the path of kernel .config"
+        required: false
+        default: "kernel-config/arf.prsty"
+        type: choice
+        options:
+          - kernel-config/arf.prsty
 env:
   TZ: America/New_York
 
@@ -92,18 +99,20 @@ jobs:
           kernel_version: ${{ inputs.kernel_version }}
           kernel_auto: ${{ inputs.kernel_auto }}
           kernel_package: ${{ inputs.kernel_package }}
-          kernel_sign: ${{ inputs.kernel_sign }}
           kernel_toolchain: ${{ inputs.kernel_toolchain }}
+          kernel_sign: ${{ inputs.kernel_sign }}
+          kernel_config: ${{ inputs.kernel_config }}
 
       - name: Upload Kernel to Release
         uses: ncipollo/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
-          tag: kernel_stable
+          tag: kernel-arf.prsty_
           artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
           allowUpdates: true
           token: ${{ secrets.GH_TOKEN }}
           body: |
-            The kernel can be used to compile Armbian and OpenWrt.
-            The kernel source code comes from: ${{ inputs.kernel_source }}
-            The kernel compilation toolchain: ${{ inputs.kernel_toolchain }}
+            - Kernel dapat digunakan untuk mengkompilasi Armbian dan OpenWrt.
+            - Kode sumber kernel berasal dari: ${{ inputs.kernel_source }}
+            - Toolchain kompilasi kernel: ${{ inputs.kernel_toolchain }}
+            - Ini adalah kernel `stable`, yang dapat digunakan di Armbian dan OpenWrt.
