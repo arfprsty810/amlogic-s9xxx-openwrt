@@ -24,6 +24,7 @@ on:
         default: "all"
         type: choice
         options:
+          - all
           - s905x-b860h
       openwrt_kernel:
         description: "Select kernel version"
