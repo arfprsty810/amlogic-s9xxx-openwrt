@@ -80,7 +80,6 @@ on:
         type: choice
         options:
           - arfprsty810/amlogic-s9xxx-openwrt
-          - ophub/kernel
       kernel_usage:
         description: "Set the tags of the kernel."
         required: false
@@ -88,10 +87,6 @@ on:
         type: choice
         options:
           - arf.prsty_
-          - stable
-          - flippy
-          - dev
-          - beta
 env:
   TZ: America/New_York
   IMAGEBUILDER_SH: config-openwrt/arf-wrt/imagebuilder.sh
