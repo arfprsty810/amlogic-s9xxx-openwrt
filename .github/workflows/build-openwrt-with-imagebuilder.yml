@@ -7,7 +7,6 @@
 #=====================================================================================
 
 name: OpenWrt_ImageBuilder_with_AmlogicService
-
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -15,7 +14,7 @@ on:
       releases_branch:
         description: "Select the releases branch"
         required: false
-        default: "openwrt:21.02.7"
+        default: "openwrt:21.02.3"
         type: choice
         options:
           - openwrt:22.03.5
@@ -66,15 +65,10 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "5.15.1_6.1.1"
+        default: "5.4.1"
         type: choice
         options:
-          - 5.4.1_5.10.1
-          - 5.15.1_6.1.1
           - 5.4.1
-          - 5.10.1
-          - 5.15.1
-          - 6.1.1
       auto_kernel:
         description: "Auto use the latest kernel"
         required: false
@@ -83,21 +77,17 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "ophub/kernel"
+        default: "arfprsty810/amlogic-s9xxx-openwrt"
         type: choice
         options:
-          - ophub/kernel
+          - arfprsty810/amlogic-s9xxx-openwrt
       kernel_usage:
-        description: "Set the tags of the stable kernel."
+        description: "Set the tags of the kernel."
         required: false
-        default: "stable"
+        default: "arf.prsty_"
         type: choice
         options:
-          - stable
-          - flippy
-          - dev
-          - beta
-
+          - arf.prsty_
 env:
   TZ: America/New_York
   IMAGEBUILDER_SH: config-openwrt/imagebuilder/imagebuilder.sh
