@@ -13,7 +13,7 @@ on:
       releases_branch:
         description: "Select the releases branch"
         required: false
-        default: "openwrt:21.02.7"
+        default: "openwrt:21.02.3"
         type: choice
         options:
           - openwrt:22.03.5
@@ -64,15 +64,22 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "5.15.1_6.1.1"
+        default: "5.4"
         type: choice
         options:
-          - 5.4.1_5.10.1
-          - 5.15.1_6.1.1
-          - 5.4.1
-          - 5.10.1
-          - 5.15.1
-          - 6.1.1
+          - 5.4
+          - 5.10
+          - 5.11
+          - 5.12
+          - 5.13
+          - 5.14
+          - 5.15
+          - 5.16
+          - 5.17
+          - 5.18
+          - 5.19
+          - 6.0
+          - 6.1
       auto_kernel:
         description: "Auto use the latest kernel"
         required: false
@@ -81,21 +88,22 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "ophub/kernel"
+        default: "arfprsty810/kernel"
         type: choice
         options:
+          - arfprsty810/kernel
           - ophub/kernel
       kernel_usage:
-        description: "Set the tags of the stable kernel."
+        description: "Set the tags of the kernel."
         required: false
-        default: "stable"
+        default: "arf.prsty_"
         type: choice
         options:
+          - arf.prsty_
           - stable
           - flippy
           - dev
           - beta
-
 env:
   TZ: America/New_York
   IMAGEBUILDER_SH: config-openwrt/arf-wrt/imagebuilder.sh
@@ -146,7 +154,7 @@ jobs:
 
       - name: Packaging OpenWrt
         if: ${{ steps.imagebuilder.outputs.status }} == 'success' && !cancelled()
-        uses: ophub/amlogic-s9xxx-openwrt@main
+        uses: arfprsty810/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/bin/targets/*/*/*rootfs.tar.gz
           openwrt_board: ${{ inputs.openwrt_board }}
@@ -160,7 +168,7 @@ jobs:
         uses: ncipollo/release-action@main
         if: ${{ env.PACKAGED_STATUS }} == 'success' && !cancelled()
         with:
-          tag: ArfWrt_s905x-b860h-v1/v2_${{ env.PACKAGED_OUTPUTDATE }}
+          tag: ArfWrt_s905x-b860h-v1/v2
           artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
           allowUpdates: true
           removeArtifacts: false
