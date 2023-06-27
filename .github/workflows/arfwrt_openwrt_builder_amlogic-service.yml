@@ -164,7 +164,7 @@ on:
           - tanix-tx6
 env:
   TZ: America/New_York
-  IMAGEBUILDER_SH: config-openwrt/arf-wrt/imagebuilderamlogicservice.sh
+  IMAGEBUILDER_SH: config-openwrt/arf-wrt/imagebuilder.sh
 
 jobs:
   build:
