@@ -229,6 +229,17 @@ jobs:
           sudo -E apt-get -y update
           sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
           sudo -E apt-get -y install $(curl -fsSL https://is.gd/depend_ubuntu2204_openwrt)
+          
+          ### Prerequisites for buildroot
+          sudo apt-get install build-essential subversion libncurses5-dev zlib1g-dev
+          sudo apt-get install gawk gcc-multilib flex git-core gettext libssl-dev
+
+          ### Prerequisite for master on Ubuntu as master needs python3 libs
+          sudo apt-get install python3-distutils
+
+          ### Prerequisite for 18.06 and 19.07 on Ubuntu 17.10+ as it has python3 by default
+          # sudo apt-get install python
+          
           sudo -E systemctl daemon-reload
           #sudo -E apt-get -y full-upgrade
           sudo -E apt-get -y autoremove --purge
