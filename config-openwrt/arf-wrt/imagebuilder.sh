@@ -178,23 +178,23 @@ rebuild_firmware() {
     # sorting by https://build.moz.one
     my_packages="\
         acpid attr base-files bash bc blkid block-mount blockd bsdtar \
-        busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark \
+        busybox bzip2 cgi-io chattr comgt comgt-ncm \
         coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
-        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
+        dosfstools dumpe2fs e2freefrag e2fsprogs \
         f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn \
         kmod-brcmfmac kmod-brcmutil libjson-script \
 	\
-        libnetwork losetup lsattr lsblk lscpu mkf2fs \
-        mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt \
-        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe \
-        pv rename resize2fs runc subversion-client subversion-libs tar \
-        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
-        uuidgen wget-ssl whereis which wwan xfs-fsck xfs-mkfs xz \
+        losetup lsattr lsblk lscpu mkf2fs \
+        mount-utils openssl-util perl-http-date perlbase-file perlbase-getopt \
+        perlbase-time perlbase-unicode perlbase-utf8 ppp ppp-mod-pppoe \
+        pv rename resize2fs subversion-client subversion-libs tar \
+        ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
+        uuidgen wget-ssl whereis wwan xfs-fsck xfs-mkfs xz \
         xz-utils ziptool zstd \
         \
-        libiwinfo libiwinfo-data libiwinfo-lua liblua \
+        libiwinfo libiwinfo-lua liblua \
         libubus-lua luci-app-firewall \
-        px5g-wolfssl rpcd rpcd-mod-file rpcd-mod-iwinfo \
+        rpcd rpcd-mod-file rpcd-mod-iwinfo \
         rpcd-mod-rrdns adb \
         \
         luci luci-base luci-compat luci-i18n-base-en \
@@ -204,7 +204,7 @@ rebuild_firmware() {
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
 	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
-	libzip-gnutls libzip-mbedtls libzip-nossl libopenssl1.1 libgnutls \
+	libopenssl1.1 libgnutls \
 	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
 	\
         kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
