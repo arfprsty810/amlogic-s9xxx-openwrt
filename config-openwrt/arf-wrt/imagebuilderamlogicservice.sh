@@ -183,14 +183,14 @@ rebuild_firmware() {
         dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
         f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn \
         kmod-brcmfmac kmod-brcmutil libjson-script \
-		\
+	\
         libnetwork losetup lsattr lsblk lscpu mkf2fs \
         mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt \
         perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe \
         pv rename resize2fs runc subversion-client subversion-libs tar \
         tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
         uuidgen wget-ssl whereis which wwan xfs-fsck xfs-mkfs xz \
-        xz-utils ziptool zoneinfo-asia zstd \
+        xz-utils ziptool zstd \
         \
         libiwinfo libiwinfo-data libiwinfo-lua liblua \
         libubus-lua luci-app-firewall \
@@ -203,6 +203,10 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
+	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
+	libzip-gnutls libzip-mbedtls libzip-nossl libopenssl1.1 libgnutls \
+	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
+	\
         kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
         kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net \
         kmod-usb-net-cdc-ether kmod-usb2 \
