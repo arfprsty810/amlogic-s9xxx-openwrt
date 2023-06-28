@@ -203,8 +203,8 @@ rebuild_firmware() {
         luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
-	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 \
-	libzip-gnutls libzip-mbedtls libzip-nossl libopenssl1.1 libgnutls \
+	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
+	libopenssl1.1 libgnutls \
 	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
 	\
         kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
@@ -214,8 +214,6 @@ rebuild_firmware() {
         ath9k-htc-firmware btrfs-progs hostapd hostapd-utils kmod-ath kmod-ath9k \
         kmod-ath9k-htc kmod-cfg80211 kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
         kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
-        \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
         ${config_list} \
         "
