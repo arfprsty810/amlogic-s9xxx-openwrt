@@ -178,10 +178,6 @@ on:
           - arf.prsty_
 
 env:
-  #FEEDS_CONF: config-openwrt/arfwrt-builder/feeds.conf.default
-  #CONFIG_FILE: config-openwrt/arfwrt-builder/config.lede-master
-  #DIY_P1_SH: config-openwrt/arfwrt-builder/diy-part1.lede-master.sh
-  #DIY_P2_SH: config-openwrt/arfwrt-builder/diy-part2.lede-master.sh
   TZ: America/New_York
 
 jobs:
