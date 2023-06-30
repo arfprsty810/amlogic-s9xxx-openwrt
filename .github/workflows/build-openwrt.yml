@@ -12,7 +12,7 @@ on:
       source_branch:
         description: "Select the source branch"
         required: false
-        default: "lede-master"
+        default: "openwrt-main"
         type: choice
         options:
           - openwrt-main
@@ -30,6 +30,7 @@ on:
           - smart-am40_station-m1_sw799_tn3399_vplus_zysj
           - s905d
           - s905d-ki-pro
+          - s905d-sml5442tw
           - s905x
           - s905x-tx9
           - s905x-t95
@@ -148,8 +149,8 @@ on:
         default: "arfprsty810/kernel"
         type: choice
         options:
-          - ophub/kernel
           - arfprsty810/kernel
+          - ophub/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -168,6 +169,14 @@ on:
         options:
           - save
           - temp
+      builder_name:
+        description: "Set OpenWrt builder signature."
+        required: false
+        default: "arf.prsty_"
+        type: choice
+        options:
+          - arf.prsty_
+          - angel
 
 env:
   FEEDS_CONF: config-openwrt/${{ inputs.source_branch }}/feeds.conf.default
@@ -308,7 +317,7 @@ jobs:
 
       - name: Packaging OpenWrt
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
-        uses: ophub/amlogic-s9xxx-openwrt@main
+        uses: arfprsty810/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/output/*rootfs.tar.gz
           openwrt_board: ${{ inputs.openwrt_board }}
@@ -316,6 +325,7 @@ jobs:
           auto_kernel: ${{ inputs.auto_kernel }}
           kernel_repo: ${{ inputs.kernel_repo }}
           kernel_usage: ${{ inputs.kernel_usage }}
+          builder_name: ${{ inputs.builder_name }}
           gh_token: ${{ secrets.GH_TOKEN }}
 
       - name: Upload the packaged OpenWrt
