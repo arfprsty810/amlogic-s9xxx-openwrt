@@ -6,7 +6,7 @@
 #                https://downloads.immortalwrt.org/releases
 #=====================================================================================
 
-name: OpenWrt_ImageBuilder_with_AmlogicService
+name: ArfWrt_ImageBuilder
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -181,8 +181,8 @@ on:
         default: "config-openwrt/arf-wrt/imagebuilderamlogicservice.sh"
         type: choice
         options:
-          - config-openwrt/arf-wrt/imagebuilder.sh
-          - config-openwrt/arf-wrt/imagebuilderamlogicservice.sh
+          - config-openwrt/arfwrt-builder/imagebuilder.sh
+          - config-openwrt/arfwrt-builder/imagebuilder-amlogicservice.sh
 env:
   TZ: America/New_York
   IMAGEBUILDER_SH: ${{ inputs.image_builder }}
