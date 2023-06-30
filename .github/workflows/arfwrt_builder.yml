@@ -3,7 +3,7 @@
 # Description: Build OpenWrt
 #============================================================================================
 
-name: OpenWrt_Build_OpenWrt
+name: ArfWrt_Builder
 
 on:
   repository_dispatch:
@@ -12,7 +12,7 @@ on:
       source_branch:
         description: "Select the source branch"
         required: false
-        default: "openwrt-main"
+        default: "lede-master"
         type: choice
         options:
           - openwrt-main
@@ -176,13 +176,12 @@ on:
         type: choice
         options:
           - arf.prsty_
-          - angel
 
 env:
-  FEEDS_CONF: config-openwrt/${{ inputs.source_branch }}/feeds.conf.default
-  CONFIG_FILE: config-openwrt/${{ inputs.source_branch }}/config
-  DIY_P1_SH: config-openwrt/${{ inputs.source_branch }}/diy-part1.sh
-  DIY_P2_SH: config-openwrt/${{ inputs.source_branch }}/diy-part2.sh
+  #FEEDS_CONF: config-openwrt/arfwrt-builder/feeds.conf.default
+  #CONFIG_FILE: config-openwrt/arfwrt-builder/config.lede-master
+  #DIY_P1_SH: config-openwrt/arfwrt-builder/diy-part1.lede-master.sh
+  #DIY_P2_SH: config-openwrt/arfwrt-builder/diy-part2.lede-master.sh
   TZ: America/New_York
 
 jobs:
@@ -221,14 +220,26 @@ jobs:
         run: |
           # Set up compilation source code
           if [[ "${{ inputs.source_branch }}" == *"openwrt"* ]]; then
+              FEEDS_CONF: config-openwrt/arfwrt-builder/feeds.conf.default
+              CONFIG_FILE: config-openwrt/arfwrt-builder/config.openwrt
+              DIY_P1_SH: config-openwrt/arfwrt-builder/diy-part1.openwrt.sh
+              DIY_P2_SH: config-openwrt/arfwrt-builder/diy-part2.openwrt.sh
               REPO_URL="https://github.com/openwrt/openwrt"
               REPO_BRANCH="main"
               TAGS_NAME="official"
           elif [[ "${{ inputs.source_branch }}" == *"lede"* ]]; then
+              FEEDS_CONF: config-openwrt/arfwrt-builder/feeds.conf.default
+              CONFIG_FILE: config-openwrt/arfwrt-builder/config.lede
+              DIY_P1_SH: config-openwrt/arfwrt-builder/diy-part1.lede.sh
+              DIY_P2_SH: config-openwrt/arfwrt-builder/diy-part2.lede.sh
               REPO_URL="https://github.com/coolsnowwolf/lede"
               REPO_BRANCH="master"
               TAGS_NAME="lede"
           elif [[ "${{ inputs.source_branch }}" == *"immortalwrt"* ]]; then
+              FEEDS_CONF: config-openwrt/arfwrt-builder/feeds.conf.default
+              CONFIG_FILE: config-openwrt/arfwrt-builder/config.immortalwrt
+              DIY_P1_SH: config-openwrt/arfwrt-builder/diy-part1.immortalwrt.sh
+              DIY_P2_SH: config-openwrt/arfwrt-builder/diy-part2.immortalwrt.sh
               REPO_URL="https://github.com/immortalwrt/immortalwrt"
               REPO_BRANCH="master"
               TAGS_NAME="immortalwrt"
@@ -342,10 +353,10 @@ jobs:
             ### OpenWrt Image information
             - Default IP: 192.168.1.1
             - Default username: root
-            - Default password: password
+            - Default password: none
             - Default WIFI name: OpenWrt
             - Default WIFI password: none
             ### Install to EMMC
-            - Login to OpenWrt → System → Amlogic Service → Install OpenWrt
+            - Login to OpenWrt > System > Amlogic Service > Install OpenWrt
             ### OpenWrt Image Verification
             - sha256sum
