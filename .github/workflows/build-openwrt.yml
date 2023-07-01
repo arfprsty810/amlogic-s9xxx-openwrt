@@ -3,7 +3,7 @@
 # Description: Build OpenWrt
 #============================================================================================
 
-name: Build OpenWrt
+name: ArfWrt_Builder
 
 on:
   repository_dispatch:
@@ -178,11 +178,11 @@ on:
           - arf.prsty_
 
 env:
-  FEEDS_CONF: config-openwrt/${{ inputs.source_branch }}/feeds.conf.default
+  TZ: America/New_York
   CONFIG_FILE: config-openwrt/${{ inputs.source_branch }}/config
   DIY_P1_SH: config-openwrt/${{ inputs.source_branch }}/diy-part1.sh
   DIY_P2_SH: config-openwrt/${{ inputs.source_branch }}/diy-part2.sh
-  TZ: America/New_York
+  FEEDS_CONF: config-openwrt/${{ inputs.source_branch }}/feeds.conf.default
 
 jobs:
   build:
@@ -341,10 +341,10 @@ jobs:
             ### OpenWrt Image information
             - Default IP: 192.168.1.1
             - Default username: root
-            - Default password: password
+            - Default password: none
             - Default WIFI name: OpenWrt
             - Default WIFI password: none
             ### Install to EMMC
-            - Login to OpenWrt → System → Amlogic Service → Install OpenWrt
+            - Login to OpenWrt > System > Amlogic Service > Install OpenWrt
             ### OpenWrt Image Verification
             - sha256sum
