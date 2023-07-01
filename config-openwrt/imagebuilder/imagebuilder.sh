@@ -21,8 +21,8 @@
 # Instructions:  Download OpenWrt firmware from the official OpenWrt,
 #                Use Image Builder to add packages, lib, theme, app and i18n, etc.
 #
-# Command: ./config-openwrt/arf-wrt/imagebuilder.sh <source:branch>
-#          ./config-openwrt/arf-wrt/imagebuilder.sh openwrt:21.02.3
+# Command: ./config-openwrt/imagebuilder/imagebuilder.sh <source:branch>
+#          ./config-openwrt/imagebuilder/imagebuilder.sh openwrt:21.02.3
 #
 #======================================== Functions list ========================================
 #
