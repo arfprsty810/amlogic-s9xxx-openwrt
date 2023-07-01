@@ -1,7 +1,18 @@
-#======================================================================================
+#!/bin/bash
+#================================================================================================
 #
+# This file is licensed under the terms of the GNU General Public
+# License version 2. This program is licensed "as is" without any
+# warranty of any kind, whether express or implied.
+#
+# This file is a part of the make OpenWrt for Amlogic s9xxx tv box
 # https://github.com/ophub/amlogic-s9xxx-openwrt
+#
 # Description: Build OpenWrt with Image Builder
+# Copyright (C) 2021~ https://github.com/unifreq/openwrt_packit
+# Copyright (C) 2021~ https://github.com/ophub/amlogic-s9xxx-openwrt
+# Copyright (C) 2021~ https://downloads.openwrt.org/releases
+# Copyright (C) 2023~ https://downloads.immortalwrt.org/releases
 #
 # Download from: https://downloads.openwrt.org/releases
 #                https://downloads.immortalwrt.org/releases
@@ -10,529 +21,233 @@
 # Instructions:  Download OpenWrt firmware from the official OpenWrt,
 #                Use Image Builder to add packages, lib, theme, app and i18n, etc.
 #
-#======================================================================================
+# Command: ./config-openwrt/arf-wrt/imagebuilder.sh <source:branch>
+#          ./config-openwrt/arf-wrt/imagebuilder.sh openwrt:21.02.3
 #
-# 1. Applications
+#======================================== Functions list ========================================
 #
-# CONFIG_PACKAGE_luci-app-acl is not set
-# CONFIG_PACKAGE_luci-app-acme is not set
-# CONFIG_PACKAGE_luci-app-adblock is not set
-# CONFIG_PACKAGE_luci-app-advanced-reboot is not set
-# CONFIG_PACKAGE_luci-app-ahcp is not set
-# CONFIG_PACKAGE_luci-app-aria2 is not set
-# CONFIG_PACKAGE_luci-app-attendedsysupgrade is not set
-# CONFIG_PACKAGE_luci-app-babeld is not set
-# CONFIG_PACKAGE_luci-app-bcp38 is not set
-# CONFIG_PACKAGE_luci-app-bird1-ipv4 is not set
-# CONFIG_PACKAGE_luci-app-bird1-ipv6 is not set
-# CONFIG_PACKAGE_luci-app-bmx6 is not set
-# CONFIG_PACKAGE_luci-app-bmx7 is not set
-# CONFIG_PACKAGE_luci-app-cjdns is not set
-# CONFIG_PACKAGE_luci-app-clamav is not set
-# CONFIG_PACKAGE_luci-app-commands is not set
-# CONFIG_PACKAGE_luci-app-cshark is not set
-# CONFIG_PACKAGE_luci-app-dawn is not set
-# CONFIG_PACKAGE_luci-app-dcwapd is not set
-CONFIG_PACKAGE_luci-app-ddns=y
-# CONFIG_PACKAGE_luci-app-diag-core is not set
-# CONFIG_PACKAGE_luci-app-dnscrypt-proxy is not set
-CONFIG_PACKAGE_luci-app-dockerman=y
-# CONFIG_PACKAGE_luci-app-dump1090 is not set
-# CONFIG_PACKAGE_luci-app-dynapoint is not set
-# CONFIG_PACKAGE_luci-app-eoip is not set
-# CONFIG_PACKAGE_luci-app-example is not set
-CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-frps=y
-# CONFIG_PACKAGE_luci-app-fwknopd is not set
-# CONFIG_PACKAGE_luci-app-hd-idle is not set
-# CONFIG_PACKAGE_luci-app-hnet is not set
-# CONFIG_PACKAGE_luci-app-https-dns-proxy is not set
-# CONFIG_PACKAGE_luci-app-ksmbd is not set
-# CONFIG_PACKAGE_luci-app-ledtrig-rssi is not set
-# CONFIG_PACKAGE_luci-app-ledtrig-switch is not set
-# CONFIG_PACKAGE_luci-app-ledtrig-usbport is not set
-# CONFIG_PACKAGE_luci-app-lxc is not set
-# CONFIG_PACKAGE_luci-app-minidlna is not set
-# CONFIG_PACKAGE_luci-app-mjpg-streamer is not set
-# CONFIG_PACKAGE_luci-app-mwan3 is not set
-# CONFIG_PACKAGE_luci-app-nextdns is not set
-# CONFIG_PACKAGE_luci-app-nft-qos is not set
-# CONFIG_PACKAGE_luci-app-nlbwmon is not set
-# CONFIG_PACKAGE_luci-app-ntpc is not set
-# CONFIG_PACKAGE_luci-app-nut is not set
-# CONFIG_PACKAGE_luci-app-ocserv is not set
-# CONFIG_PACKAGE_luci-app-olsr is not set
-# CONFIG_PACKAGE_luci-app-olsr-services is not set
-# CONFIG_PACKAGE_luci-app-olsr-viz is not set
-# CONFIG_PACKAGE_luci-app-omcproxy is not set
-# CONFIG_PACKAGE_luci-app-openvpn is not set
-# CONFIG_PACKAGE_luci-app-openwisp is not set
-CONFIG_PACKAGE_luci-app-opkg=y
-# CONFIG_PACKAGE_luci-app-p910nd is not set
-# CONFIG_PACKAGE_luci-app-pagekitec is not set
-# CONFIG_PACKAGE_luci-app-polipo is not set
-# CONFIG_PACKAGE_luci-app-privoxy is not set
-# CONFIG_PACKAGE_luci-app-qos is not set
-# CONFIG_PACKAGE_luci-app-radicale is not set
-# CONFIG_PACKAGE_luci-app-radicale2 is not set
-# CONFIG_PACKAGE_luci-app-rp-pppoe-server is not set
-CONFIG_PACKAGE_luci-app-samba4=y
-# CONFIG_PACKAGE_luci-app-ser2net is not set
-# CONFIG_PACKAGE_luci-app-shadowsocks-libev is not set
-# CONFIG_PACKAGE_luci-app-shairplay is not set
-# CONFIG_PACKAGE_luci-app-siitwizard is not set
-# CONFIG_PACKAGE_luci-app-simple-adblock is not set
-# CONFIG_PACKAGE_luci-app-smartdns is not set
-# CONFIG_PACKAGE_luci-app-snmpd is not set
-# CONFIG_PACKAGE_luci-app-softether is not set
-# CONFIG_PACKAGE_luci-app-splash is not set
-# CONFIG_PACKAGE_luci-app-sqm is not set
-# CONFIG_PACKAGE_luci-app-squid is not set
-# CONFIG_PACKAGE_luci-app-statistics is not set
-# CONFIG_PACKAGE_luci-app-tinyproxy is not set
-CONFIG_PACKAGE_luci-app-transmission=y
-# CONFIG_PACKAGE_luci-app-travelmate is not set
-CONFIG_PACKAGE_luci-app-ttyd=y
-# CONFIG_PACKAGE_luci-app-udpxy is not set
-# CONFIG_PACKAGE_luci-app-uhttpd is not set
-# CONFIG_PACKAGE_luci-app-unbound is not set
-CONFIG_PACKAGE_luci-app-upnp=y
-# CONFIG_PACKAGE_luci-app-vnstat is not set
-# CONFIG_PACKAGE_luci-app-vnstat2 is not set
-# CONFIG_PACKAGE_luci-app-vpn-policy-routing is not set
-# CONFIG_PACKAGE_luci-app-vpnbypass is not set
-# CONFIG_PACKAGE_luci-app-watchcat is not set
-# CONFIG_PACKAGE_luci-app-wifischedule is not set
-# CONFIG_PACKAGE_luci-app-wireguard is not set
-CONFIG_PACKAGE_luci-app-wol=y
-# CONFIG_PACKAGE_luci-app-xfrpc is not set
-# CONFIG_PACKAGE_luci-app-xinetd is not set
-# CONFIG_PACKAGE_luci-app-yggdrasil is not set
-# end of 1. Applications
+# error_msg               : Output error message
+# download_imagebuilder   : Downloading OpenWrt ImageBuilder
+# adjust_settings         : Adjust related file settings
+# custom_packages         : Add custom packages
+# custom_config           : Add custom config
+# custom_files            : Add custom files
+# rebuild_firmware        : rebuild_firmware
+#
+#================================ Set make environment variables ================================
+#
+# Set default parameters
+make_path="${PWD}"
+openwrt_dir="openwrt"
+imagebuilder_path="${make_path}/${openwrt_dir}"
+custom_files_path="${make_path}/config-openwrt/arf-wrt/files"
+custom_config_file="${make_path}/config-openwrt/arf-wrt/config"
 
+# Set default parameters
+STEPS="[\033[95m STEPS \033[0m]"
+INFO="[\033[94m INFO \033[0m]"
+SUCCESS="[\033[92m SUCCESS \033[0m]"
+WARNING="[\033[93m WARNING \033[0m]"
+ERROR="[\033[91m ERROR \033[0m]"
 #
-# 2. Themes
-#
-# CONFIG_PACKAGE_luci-theme-bootstrap is not set
-CONFIG_PACKAGE_luci-theme-material=y
-# CONFIG_PACKAGE_luci-theme-openwrt is not set
-# CONFIG_PACKAGE_luci-theme-openwrt-2020 is not set
-# end of 2. Themes
+#================================================================================================
 
-#
-# 3. Translate
-#
-# CONFIG_PACKAGE_luci-i18n-base-ar is not set
-# CONFIG_PACKAGE_luci-i18n-base-bg is not set
-# CONFIG_PACKAGE_luci-i18n-base-bn is not set
-# CONFIG_PACKAGE_luci-i18n-base-ca is not set
-# CONFIG_PACKAGE_luci-i18n-base-cs is not set
-# CONFIG_PACKAGE_luci-i18n-base-da is not set
-# CONFIG_PACKAGE_luci-i18n-base-de is not set
-# CONFIG_PACKAGE_luci-i18n-base-el is not set
-CONFIG_PACKAGE_luci-i18n-base-en=y
-# CONFIG_PACKAGE_luci-i18n-base-es is not set
-# CONFIG_PACKAGE_luci-i18n-base-fi is not set
-# CONFIG_PACKAGE_luci-i18n-base-fr is not set
-# CONFIG_PACKAGE_luci-i18n-base-he is not set
-# CONFIG_PACKAGE_luci-i18n-base-hi is not set
-# CONFIG_PACKAGE_luci-i18n-base-hu is not set
-# CONFIG_PACKAGE_luci-i18n-base-it is not set
-# CONFIG_PACKAGE_luci-i18n-base-ja is not set
-# CONFIG_PACKAGE_luci-i18n-base-ko is not set
-# CONFIG_PACKAGE_luci-i18n-base-mr is not set
-# CONFIG_PACKAGE_luci-i18n-base-ms is not set
-# CONFIG_PACKAGE_luci-i18n-base-nl is not set
-# CONFIG_PACKAGE_luci-i18n-base-no is not set
-# CONFIG_PACKAGE_luci-i18n-base-pl is not set
-# CONFIG_PACKAGE_luci-i18n-base-pt is not set
-# CONFIG_PACKAGE_luci-i18n-base-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-base-ro is not set
-# CONFIG_PACKAGE_luci-i18n-base-ru is not set
-# CONFIG_PACKAGE_luci-i18n-base-sk is not set
-# CONFIG_PACKAGE_luci-i18n-base-sv is not set
-# CONFIG_PACKAGE_luci-i18n-base-tr is not set
-# CONFIG_PACKAGE_luci-i18n-base-uk is not set
-# CONFIG_PACKAGE_luci-i18n-base-vi is not set
-CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-base-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ar is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-bg is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-bn is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ca is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-cs is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-da is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-de is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-el is not set
-CONFIG_PACKAGE_luci-i18n-ddns-en=y
-# CONFIG_PACKAGE_luci-i18n-ddns-es is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-fi is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-fr is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-he is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-hi is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-hu is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-it is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ja is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ko is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-mr is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ms is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-no is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-pl is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-pt is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ro is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-ru is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-sk is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-sv is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-tr is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-uk is not set
-# CONFIG_PACKAGE_luci-i18n-ddns-vi is not set
-CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-ddns-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ar is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-bg is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-bn is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ca is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-cs is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-da is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-de is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-el is not set
-CONFIG_PACKAGE_luci-i18n-dockerman-en=y
-# CONFIG_PACKAGE_luci-i18n-dockerman-es is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-fa is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-fi is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-fr is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-he is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-hi is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-hu is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-id is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-it is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ja is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ko is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-lt is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-mr is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ms is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-no is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-pl is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-pt is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ro is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-ru is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-sk is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-sv is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-tr is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-uk is not set
-# CONFIG_PACKAGE_luci-i18n-dockerman-vi is not set
-CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-dockerman-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ar is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-bg is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-bn is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ca is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-cs is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-da is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-de is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-el is not set
-CONFIG_PACKAGE_luci-i18n-firewall-en=y
-# CONFIG_PACKAGE_luci-i18n-firewall-es is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-fa is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-fi is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-fr is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-he is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-hi is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-hu is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-id is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-it is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ja is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ko is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-mr is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ms is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-nl is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-no is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-pl is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-pt is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ro is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-ru is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-si is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-sk is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-sv is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-tr is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-uk is not set
-# CONFIG_PACKAGE_luci-i18n-firewall-vi is not set
-CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-firewall-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ar is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-bg is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-bn is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ca is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-cs is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-da is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-de is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-el is not set
-CONFIG_PACKAGE_luci-i18n-frpc-en=y
-# CONFIG_PACKAGE_luci-i18n-frpc-es is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-fi is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-fr is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-he is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-hi is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-hu is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-it is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ja is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ko is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-mr is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ms is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-no is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-pl is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-pt is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ro is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-ru is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-sk is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-sv is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-tr is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-uk is not set
-# CONFIG_PACKAGE_luci-i18n-frpc-vi is not set
-CONFIG_PACKAGE_luci-i18n-frpc-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-frpc-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ar is not set
-# CONFIG_PACKAGE_luci-i18n-frps-bg is not set
-# CONFIG_PACKAGE_luci-i18n-frps-bn is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ca is not set
-# CONFIG_PACKAGE_luci-i18n-frps-cs is not set
-# CONFIG_PACKAGE_luci-i18n-frps-da is not set
-# CONFIG_PACKAGE_luci-i18n-frps-de is not set
-# CONFIG_PACKAGE_luci-i18n-frps-el is not set
-CONFIG_PACKAGE_luci-i18n-frps-en=y
-# CONFIG_PACKAGE_luci-i18n-frps-es is not set
-# CONFIG_PACKAGE_luci-i18n-frps-fi is not set
-# CONFIG_PACKAGE_luci-i18n-frps-fr is not set
-# CONFIG_PACKAGE_luci-i18n-frps-he is not set
-# CONFIG_PACKAGE_luci-i18n-frps-hi is not set
-# CONFIG_PACKAGE_luci-i18n-frps-hu is not set
-# CONFIG_PACKAGE_luci-i18n-frps-it is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ja is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ko is not set
-# CONFIG_PACKAGE_luci-i18n-frps-mr is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ms is not set
-# CONFIG_PACKAGE_luci-i18n-frps-no is not set
-# CONFIG_PACKAGE_luci-i18n-frps-pl is not set
-# CONFIG_PACKAGE_luci-i18n-frps-pt is not set
-# CONFIG_PACKAGE_luci-i18n-frps-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ro is not set
-# CONFIG_PACKAGE_luci-i18n-frps-ru is not set
-# CONFIG_PACKAGE_luci-i18n-frps-sk is not set
-# CONFIG_PACKAGE_luci-i18n-frps-sv is not set
-# CONFIG_PACKAGE_luci-i18n-frps-tr is not set
-# CONFIG_PACKAGE_luci-i18n-frps-uk is not set
-# CONFIG_PACKAGE_luci-i18n-frps-vi is not set
-CONFIG_PACKAGE_luci-i18n-frps-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-frps-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ar is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-bg is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-bn is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ca is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-cs is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-da is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-de is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-el is not set
-CONFIG_PACKAGE_luci-i18n-opkg-en=y
-# CONFIG_PACKAGE_luci-i18n-opkg-es is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-fi is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-fr is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-he is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-hi is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-hu is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-it is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ja is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ko is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-mr is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ms is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-no is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-pl is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-pt is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ro is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-ru is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-sk is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-sv is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-tr is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-uk is not set
-# CONFIG_PACKAGE_luci-i18n-opkg-vi is not set
-CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-opkg-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ar is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-bg is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-bn is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ca is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-cs is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-da is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-de is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-el is not set
-CONFIG_PACKAGE_luci-i18n-samba4-en=y
-# CONFIG_PACKAGE_luci-i18n-samba4-es is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-fi is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-fr is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-he is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-hi is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-hu is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-it is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ja is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ko is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-mr is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ms is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-nl is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-no is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-pl is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-pt is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ro is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-ru is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-sk is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-sr is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-sv is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-tr is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-uk is not set
-# CONFIG_PACKAGE_luci-i18n-samba4-vi is not set
-CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-samba4-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ar is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-bg is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-bn is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ca is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-cs is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-da is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-de is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-el is not set
-CONFIG_PACKAGE_luci-i18n-transmission-en=y
-# CONFIG_PACKAGE_luci-i18n-transmission-es is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-fi is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-fr is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-he is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-hi is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-hu is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-it is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ja is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ko is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-mr is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ms is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-no is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-pl is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-pt is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ro is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-ru is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-sk is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-sv is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-tr is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-uk is not set
-# CONFIG_PACKAGE_luci-i18n-transmission-vi is not set
-CONFIG_PACKAGE_luci-i18n-transmission-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-transmission-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ar is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-bg is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-bn is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ca is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-cs is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-da is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-de is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-el is not set
-CONFIG_PACKAGE_luci-i18n-ttyd-en=y
-# CONFIG_PACKAGE_luci-i18n-ttyd-es is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-fi is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-fr is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-he is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-hi is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-hu is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-it is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ja is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ko is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-mr is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ms is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-no is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-pl is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-pt is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ro is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-ru is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-sk is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-sv is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-tr is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-uk is not set
-# CONFIG_PACKAGE_luci-i18n-ttyd-vi is not set
-CONFIG_PACKAGE_luci-i18n-ttyd-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-ttyd-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ar is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-bg is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-bn is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ca is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-cs is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-da is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-de is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-el is not set
-CONFIG_PACKAGE_luci-i18n-upnp-en=y
-# CONFIG_PACKAGE_luci-i18n-upnp-es is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-fi is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-fr is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-he is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-hi is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-hu is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-it is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ja is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ko is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-mr is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ms is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-no is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-pl is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-pt is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ro is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-ru is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-sk is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-sv is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-tr is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-uk is not set
-# CONFIG_PACKAGE_luci-i18n-upnp-vi is not set
-CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-upnp-zh-tw is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ar is not set
-# CONFIG_PACKAGE_luci-i18n-wol-bg is not set
-# CONFIG_PACKAGE_luci-i18n-wol-bn is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ca is not set
-# CONFIG_PACKAGE_luci-i18n-wol-cs is not set
-# CONFIG_PACKAGE_luci-i18n-wol-da is not set
-# CONFIG_PACKAGE_luci-i18n-wol-de is not set
-# CONFIG_PACKAGE_luci-i18n-wol-el is not set
-CONFIG_PACKAGE_luci-i18n-wol-en=y
-# CONFIG_PACKAGE_luci-i18n-wol-es is not set
-# CONFIG_PACKAGE_luci-i18n-wol-fi is not set
-# CONFIG_PACKAGE_luci-i18n-wol-fr is not set
-# CONFIG_PACKAGE_luci-i18n-wol-he is not set
-# CONFIG_PACKAGE_luci-i18n-wol-hi is not set
-# CONFIG_PACKAGE_luci-i18n-wol-hu is not set
-# CONFIG_PACKAGE_luci-i18n-wol-id is not set
-# CONFIG_PACKAGE_luci-i18n-wol-it is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ja is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ko is not set
-# CONFIG_PACKAGE_luci-i18n-wol-mr is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ms is not set
-# CONFIG_PACKAGE_luci-i18n-wol-no is not set
-# CONFIG_PACKAGE_luci-i18n-wol-pl is not set
-# CONFIG_PACKAGE_luci-i18n-wol-pt is not set
-# CONFIG_PACKAGE_luci-i18n-wol-pt-br is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ro is not set
-# CONFIG_PACKAGE_luci-i18n-wol-ru is not set
-# CONFIG_PACKAGE_luci-i18n-wol-sk is not set
-# CONFIG_PACKAGE_luci-i18n-wol-sv is not set
-# CONFIG_PACKAGE_luci-i18n-wol-tr is not set
-# CONFIG_PACKAGE_luci-i18n-wol-uk is not set
-# CONFIG_PACKAGE_luci-i18n-wol-vi is not set
-CONFIG_PACKAGE_luci-i18n-wol-zh-cn=y
-# CONFIG_PACKAGE_luci-i18n-wol-zh-tw is not set
-# end of 3. Translate
+# Encountered a serious error, abort the script execution
+error_msg() {
+    echo -e "${ERROR} ${1}"
+    exit 1
+}
 
+# Downloading OpenWrt ImageBuilder
+download_imagebuilder() {
+    cd ${make_path}
+    echo -e "${STEPS} Start downloading OpenWrt files..."
+
+    # Downloading imagebuilder files
+    if [[ "${op_sourse}" == "openwrt" ]]; then
+        download_file="https://downloads.openwrt.org/releases/${op_branch}/targets/armvirt/64/openwrt-imagebuilder-${op_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    else
+        download_file="https://downloads.immortalwrt.org/releases/${op_branch}/targets/armvirt/64/immortalwrt-imagebuilder-${op_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    fi
+    wget -q ${download_file}
+    [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
+
+    # Unzip and change the directory name
+    tar -xJf *-imagebuilder-* && sync && rm -f *-imagebuilder-*.tar.xz
+    mv -f *-imagebuilder-* ${openwrt_dir}
+
+    sync && sleep 3
+    echo -e "${INFO} [ ${make_path} ] directory status: $(ls . -l 2>/dev/null)"
+}
+
+# Adjust related files in the ImageBuilder directory
+adjust_settings() {
+    cd ${imagebuilder_path}
+    echo -e "${STEPS} Start adjusting .config file settings..."
+
+    # For .config file
+    if [[ -s ".config" ]]; then
+        # Root filesystem archives
+        sed -i "s|CONFIG_TARGET_ROOTFS_CPIOGZ=.*|# CONFIG_TARGET_ROOTFS_CPIOGZ is not set|g" .config
+        # Root filesystem images
+        sed -i "s|CONFIG_TARGET_ROOTFS_EXT4FS=.*|# CONFIG_TARGET_ROOTFS_EXT4FS is not set|g" .config
+        sed -i "s|CONFIG_TARGET_ROOTFS_SQUASHFS=.*|# CONFIG_TARGET_ROOTFS_SQUASHFS is not set|g" .config
+        sed -i "s|CONFIG_TARGET_IMAGES_GZIP=.*|# CONFIG_TARGET_IMAGES_GZIP is not set|g" .config
+    else
+        error_msg "There is no .config file in the [ ${download_file} ]"
+    fi
+
+    # For other files
+    # ......
+
+    sync && sleep 3
+    echo -e "${INFO} [ openwrt ] directory status: $(ls -al 2>/dev/null)"
+}
+
+# Add custom packages
+# If there is a custom package or ipk you would prefer to use create a [ packages ] directory,
+# If one does not exist and place your custom ipk within this directory.
+custom_packages() {
+    cd ${imagebuilder_path}
+    echo -e "${STEPS} Start adding custom packages..."
+
+    # Create a [ packages ] directory
+    [[ -d "packages" ]] || mkdir packages
+
+    # Download luci-app-amlogic
+    amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
+    #
+    amlogic_file="luci-app-amlogic"
+    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
+    wget ${amlogic_file_down} -q -P packages
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_file} ] download failed!"
+    echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
+    #
+    amlogic_i18n="luci-i18n-amlogic"
+    amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
+    wget ${amlogic_i18n_down} -q -P packages
+    [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_i18n} ] download failed!"
+    echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
+
+    # Download other luci-app-xxx
+    # ......
+
+    sync && sleep 3
+    echo -e "${INFO} [ packages ] directory status: $(ls packages -l 2>/dev/null)"
+}
+
+# Add custom packages, lib, theme, app and i18n, etc.
+custom_config() {
+    cd ${imagebuilder_path}
+    echo -e "${STEPS} Start adding custom config..."
+
+    config_list=""
+    if [[ -s "${custom_config_file}" ]]; then
+        config_list="$(cat ${custom_config_file} 2>/dev/null | grep -E "^CONFIG_PACKAGE_.*=y" | sed -e 's/CONFIG_PACKAGE_//g' -e 's/=y//g' -e 's/[ ][ ]*//g' | tr '\n' ' ')"
+        echo -e "${INFO} Custom config list: \n$(echo "${config_list}" | tr ' ' '\n')"
+    else
+        echo -e "${INFO} No custom config was added."
+    fi
+}
+
+# Add custom files
+# The FILES variable allows custom configuration files to be included in images built with Image Builder.
+# The [ files ] directory should be placed in the Image Builder root directory where you issue the make command.
+custom_files() {
+    cd ${imagebuilder_path}
+    echo -e "${STEPS} Start adding custom files..."
+
+    if [[ -d "${custom_files_path}" ]]; then
+        # Copy custom files
+        [[ -d "files" ]] || mkdir -p files
+        cp -rf ${custom_files_path}/* files
+
+        sync && sleep 3
+        echo -e "${INFO} [ files ] directory status: $(ls files -l 2>/dev/null)"
+    else
+        echo -e "${INFO} No customized files were added."
+    fi
+}
+
+# Rebuild OpenWrt firmware
+rebuild_firmware() {
+    cd ${imagebuilder_path}
+    echo -e "${STEPS} Start building OpenWrt with Image Builder..."
+
+    # Selecting default packages, lib, theme, app and i18n, etc.
+    # sorting by https://build.moz.one
+    my_packages="\
+        acpid attr base-files bash bc blkid block-mount blockd bsdtar \
+        busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark \
+        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
+        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
+        f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn \
+        kmod-brcmfmac kmod-brcmutil libjson-script \
+	\
+        libnetwork losetup lsattr lsblk lscpu mkf2fs \
+        mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt \
+        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe \
+        pv rename resize2fs runc subversion-client subversion-libs tar \
+        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
+        uuidgen wget-ssl whereis which wwan xfs-fsck xfs-mkfs xz \
+        xz-utils ziptool zstd \
+        \
+        libiwinfo libiwinfo-data libiwinfo-lua liblua \
+        libubus-lua luci-app-firewall \
+        px5g-wolfssl rpcd rpcd-mod-file rpcd-mod-iwinfo \
+        rpcd-mod-rrdns adb \
+        \
+        luci luci-base luci-compat luci-i18n-base-en \
+        luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
+        luci-mod-admin-full \
+        luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
+        luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
+        \
+	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
+	libopenssl1.1 libgnutls \
+	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
+	\
+        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
+        kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net \
+        kmod-usb-net-cdc-ether kmod-usb2 \
+        \
+        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils kmod-ath kmod-ath9k \
+        kmod-ath9k-htc kmod-cfg80211 kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
+        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
+        \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn \
+        \
+        ${config_list} \
+        "
+
+    # Rebuild firmware
+    make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
+
+    sync && sleep 3
+    echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
+    echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
+}
+
+# Show welcome message
+echo -e "${STEPS} Welcome to Rebuild OpenWrt Using the Image Builder."
+[[ -x "${0}" ]] || error_msg "Please give the script permission to run: [ chmod +x ${0} ]"
+[[ -z "${1}" ]] && error_msg "Please specify the OpenWrt Branch, such as [ ${0} openwrt:22.03.3 ]"
+[[ "${1}" =~ ^[a-z]{3,}:[0-9]+ ]] || error_msg "Incoming parameter format <source:branch>: openwrt:22.03.3"
+op_sourse="${1%:*}"
+op_branch="${1#*:}"
+echo -e "${INFO} Rebuild path: [ ${PWD} ]"
+echo -e "${INFO} Rebuild Source: [ ${op_sourse} ], Branch: [ ${op_branch} ]"
+echo -e "${INFO} Server space usage before starting to compile: \n$(df -hT ${make_path}) \n"
 #
-# 4. Other Configuration
-CONFIG_BUSYBOX_DEFAULT_FALLOCATE=y
-# end of 4. Other Configuration
+# Perform related operations
+download_imagebuilder
+adjust_settings
+custom_packages
+custom_config
+custom_files
+rebuild_firmware
+#
+# Show server end information
+echo -e "Server space usage after compilation: \n$(df -hT ${make_path}) \n"
+# All process completed
+wait
