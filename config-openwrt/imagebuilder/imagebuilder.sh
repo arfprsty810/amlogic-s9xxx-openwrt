@@ -21,8 +21,8 @@
 # Instructions:  Download OpenWrt firmware from the official OpenWrt,
 #                Use Image Builder to add packages, lib, theme, app and i18n, etc.
 #
-# Command: ./config-openwrt/imagebuilder/imagebuilder.sh <source:branch>
-#          ./config-openwrt/imagebuilder/imagebuilder.sh openwrt:21.02.3
+# Command: ./config-openwrt/arf-wrt/imagebuilder.sh <source:branch>
+#          ./config-openwrt/arf-wrt/imagebuilder.sh openwrt:21.02.3
 #
 #======================================== Functions list ========================================
 #
@@ -40,8 +40,8 @@
 make_path="${PWD}"
 openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
-custom_files_path="${make_path}/config-openwrt/imagebuilder/files"
-custom_config_file="${make_path}/config-openwrt/imagebuilder/config"
+custom_files_path="${make_path}/config-openwrt/arf-wrt/files"
+custom_config_file="${make_path}/config-openwrt/arf-wrt/config"
 
 # Set default parameters
 STEPS="[\033[95m STEPS \033[0m]"
@@ -63,19 +63,12 @@ download_imagebuilder() {
     cd ${make_path}
     echo -e "${STEPS} Start downloading OpenWrt files..."
 
-    # Determine the target system (Imagebuilder files naming has changed since 23.05.0)
-    if [[ "${op_branch:0:2}" -ge "23" && "${op_branch:3:2}" -ge "05" ]]; then
-        target_system="armsr/armv8"
-        target_name="armsr-armv8"
-        target_profile=""
-    else
-        target_system="armvirt/64"
-        target_name="armvirt-64"
-        target_profile="Default"
-    fi
-
     # Downloading imagebuilder files
-    download_file="https://downloads.${op_sourse}.org/releases/${op_branch}/targets/${target_system}/${op_sourse}-imagebuilder-${op_branch}-${target_name}.Linux-x86_64.tar.xz"
+    if [[ "${op_sourse}" == "openwrt" ]]; then
+        download_file="https://downloads.openwrt.org/releases/${op_branch}/targets/armvirt/64/openwrt-imagebuilder-${op_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    else
+        download_file="https://downloads.immortalwrt.org/releases/${op_branch}/targets/armvirt/64/immortalwrt-imagebuilder-${op_branch}-armvirt-64.Linux-x86_64.tar.xz"
+    fi
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
 
@@ -185,24 +178,42 @@ rebuild_firmware() {
     # sorting by https://build.moz.one
     my_packages="\
         acpid attr base-files bash bc blkid block-mount blockd bsdtar \
-        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark \
-        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker \
-        docker-compose dockerd dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
+        busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark \
+        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
+        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
         f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn \
-        kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211 libjson-script \
-        liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs \
+        kmod-brcmfmac kmod-brcmutil libjson-script \
+	\
+        libnetwork losetup lsattr lsblk lscpu mkf2fs \
         mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt \
         perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe \
-        proto-bonding pv rename resize2fs runc subversion-client subversion-libs tar \
-        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch \
-        uuidgen wget-ssl whereis which wpad-basic wwan xfs-fsck xfs-mkfs xz \
-        xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
+        pv rename resize2fs runc subversion-client subversion-libs tar \
+        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
+        uuidgen wget-ssl whereis which wwan xfs-fsck xfs-mkfs xz \
+        xz-utils ziptool zstd \
         \
-        luci luci-base luci-compat luci-i18n-base-en luci-i18n-base-zh-cn luci-lib-base  \
-        luci-lib-docker luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
-        luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
-        luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
+        libiwinfo libiwinfo-data libiwinfo-lua liblua \
+        libubus-lua luci-app-firewall \
+        px5g-wolfssl rpcd rpcd-mod-file rpcd-mod-iwinfo \
+        rpcd-mod-rrdns adb \
+        \
+        luci luci-base luci-compat luci-i18n-base-en \
+        luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
+        luci-mod-admin-full \
+        luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
+        \
+	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
+	libopenssl1.1 libgnutls \
+	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
+	\
+        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
+        kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net \
+        kmod-usb-net-cdc-ether kmod-usb2 \
+        \
+        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils kmod-ath kmod-ath9k \
+        kmod-ath9k-htc kmod-cfg80211 kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
+        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
         \
         luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
@@ -210,10 +221,10 @@ rebuild_firmware() {
         "
 
     # Rebuild firmware
-    make image PROFILE="${target_profile}" PACKAGES="${my_packages}" FILES="files"
+    make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
 
     sync && sleep 3
-    echo -e "${INFO} [ openwrt/bin/targets/*/* ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
+    echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
     echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
 }
 
