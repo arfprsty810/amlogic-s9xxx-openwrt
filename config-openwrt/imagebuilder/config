@@ -23,7 +23,6 @@ CONFIG_PACKAGE_luci-app-ttyd=y
 #
 # 2. Themes
 #
-CONFIG_PACKAGE_luci-theme-material=y
 # end of 2. Themes
 
 #
