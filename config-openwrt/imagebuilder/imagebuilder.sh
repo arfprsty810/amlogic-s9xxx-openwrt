@@ -177,11 +177,9 @@ rebuild_firmware() {
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
     my_packages="\
- 	ttyd 
-        \
         luci luci-base luci-compat luci-i18n-base-en \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
-        luci-mod-admin-full \
+        luci-mod-admin-full ttyd \
         luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
         \
