@@ -231,10 +231,16 @@ jobs:
           sudo apt-get install python3-distutils
 
           ### Prerequisite for 18.06 and 19.07 on Ubuntu 17.10+ as it has python3 by default
-          # sudo apt-get install python
+          sudo apt-get install python3
+          
+          sudo apt-get install python-software-properties
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+          sudo apt-get update
+          sudo apt-get install gcc-4.8
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
           
           sudo -E systemctl daemon-reload
-          #sudo -E apt-get -y full-upgrade
+          sudo -E apt-get -y full-upgrade
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           sudo timedatectl set-timezone "${TZ}"
