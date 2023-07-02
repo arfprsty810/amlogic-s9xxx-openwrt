@@ -154,25 +154,7 @@ rebuild_firmware() {
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
     my_packages="\
-        acpid attr base-files bash bc blkid block-mount blockd bsdtar \
-        busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark \
-        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
-        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
-        f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn \
-        kmod-brcmfmac kmod-brcmutil libjson-script \
-	\
-        libnetwork losetup lsattr lsblk lscpu mkf2fs \
-        mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt \
-        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe \
-        pv rename resize2fs runc subversion-client subversion-libs tar \
-        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
-        uuidgen wget-ssl whereis which wwan xfs-fsck xfs-mkfs xz \
-        xz-utils ziptool zstd \
-        \
-        libiwinfo libiwinfo-data libiwinfo-lua liblua \
-        libubus-lua luci-app-firewall \
-        px5g-wolfssl rpcd rpcd-mod-file rpcd-mod-iwinfo \
-        rpcd-mod-rrdns adb \
+ 	ttyd 
         \
         luci luci-base luci-compat luci-i18n-base-en \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
