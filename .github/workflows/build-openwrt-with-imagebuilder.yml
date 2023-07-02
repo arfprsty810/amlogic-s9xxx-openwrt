@@ -222,7 +222,7 @@ jobs:
           sudo -E apt-get -y update
           sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
           sudo -E apt-get -y install $(curl -fsSL https://is.gd/depend_ubuntu2204_openwrt)
-          
+
           ### Prerequisites for buildroot
           sudo apt-get install build-essential subversion libncurses5-dev zlib1g-dev
           sudo apt-get install gawk gcc-multilib flex git-core gettext libssl-dev
@@ -230,7 +230,25 @@ jobs:
           sudo apt-get install python3-distutils
           ### Prerequisite for 18.06 and 19.07 on Ubuntu 17.10+ as it has python3 by default
           sudo apt-get install python3
-	  
+
+	  sudo dpkg --add-architecture i386
+
+	  sudo apt update
+	  sudo apt upgrade
+	  sudo apt-get install gcc-multilib libstdc++6:i386
+	  wget https://ftp.gnu.org/gnu/gcc/gcc-4.8.5/gcc-4.8.5.tar.bz2 --no-check-certificate
+	  tar xf gcc-4.8.5.tar.bz2
+	  # cd gcc-4.8.5
+	  # ./contrib/download_prerequisites
+	  # cd ..
+	  sed -i -e 's/__attribute__/\/\/__attribute__/g' gcc-4.8.5/gcc/cp/cfns.h
+	  sed -i 's/struct ucontext/ucontext_t/g' gcc-4.8.5/libgcc/config/i386/linux-unwind.h
+	  mkdir xgcc-4.8.5
+	  pushd xgcc-4.8.5
+	  $PWD/../gcc-4.8.5/configure --enable-languages=c,c++ --prefix=/usr --enable-shared --enable-plugin --program-suffix=-4.8.5
+	  make MAKEINFO="makeinfo --force" -j
+	  sudo make install -j
+
           sudo -E systemctl daemon-reload
           sudo -E apt-get -y full-upgrade
           sudo -E apt-get -y autoremove --purge
