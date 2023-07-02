@@ -111,29 +111,6 @@ custom_packages() {
     cd ${imagebuilder_path}
     echo -e "${STEPS} Start adding custom packages..."
 
-    # Create a [ packages ] directory
-    [[ -d "packages" ]] || mkdir packages
-
-    # Download luci-app-amlogic
-    amlogic_api="https://api.github.com/repos/ophub/luci-app-amlogic/releases"
-    #
-    amlogic_file="luci-app-amlogic"
-    amlogic_file_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_name}.*.ipk" | head -n 1)"
-    wget ${amlogic_file_down} -q -P packages
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_file} ] download failed!"
-    echo -e "${INFO} The [ ${amlogic_file} ] is downloaded successfully."
-    #
-    amlogic_i18n="luci-i18n-amlogic"
-    amlogic_i18n_down="$(curl -s ${amlogic_api} | grep "browser_download_url" | grep -oE "https.*${amlogic_i18n}.*.ipk" | head -n 1)"
-    wget ${amlogic_i18n_down} -q -P packages
-    [[ "${?}" -eq "0" ]] || error_msg "[ ${amlogic_i18n} ] download failed!"
-    echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
-
-    # Download other luci-app-xxx
-    # ......
-
-    sync && sleep 3
-    echo -e "${INFO} [ packages ] directory status: $(ls packages -l 2>/dev/null)"
 }
 
 # Add custom packages, lib, theme, app and i18n, etc.
@@ -202,20 +179,6 @@ rebuild_firmware() {
         luci-mod-admin-full \
         luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        \
-	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
-	libopenssl1.1 libgnutls \
-	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
-	\
-        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
-        kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net \
-        kmod-usb-net-cdc-ether kmod-usb2 \
-        \
-        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils kmod-ath kmod-ath9k \
-        kmod-ath9k-htc kmod-cfg80211 kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
-        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
-        \
-        luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
         ${config_list} \
         "
