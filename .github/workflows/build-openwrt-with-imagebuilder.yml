@@ -17,11 +17,17 @@ on:
         default: "openwrt:21.02.3"
         type: choice
         options:
+          - openwrt:23.05.0-rc2
+          - openwrt:23.05.0-rc1
           - openwrt:22.03.5
           - openwrt:22.03.4
           - openwrt:22.03.3
           - openwrt:22.03.2
           - openwrt:22.03.1
+          - openwrt:22.03.0-rc6
+          - openwrt:22.03.0-rc5
+          - openwrt:22.03.0-rc4
+          - openwrt:22.03.0-rc1
           - openwrt:22.03.0
           - openwrt:21.02.7
           - openwrt:21.02.6
@@ -30,6 +36,9 @@ on:
           - openwrt:21.02.3
           - openwrt:21.02.2
           - openwrt:21.02.1
+          - openwrt:21.02.0-rc4
+          - openwrt:21.02.0-rc3
+          - openwrt:21.02.0-rc2
           - openwrt:21.02.0
           - openwrt:19.07.10
           - openwrt:19.07.9
