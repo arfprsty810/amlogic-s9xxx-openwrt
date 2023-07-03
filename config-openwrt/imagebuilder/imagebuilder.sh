@@ -21,8 +21,8 @@
 # Instructions:  Download OpenWrt firmware from the official OpenWrt,
 #                Use Image Builder to add packages, lib, theme, app and i18n, etc.
 #
-# Command: ./config-openwrt/imagebuilder/imagebuilder.sh <source:branch>
-#          ./config-openwrt/imagebuilder/imagebuilder.sh openwrt:21.02.3
+# Command: ./config-openwrt/arf-wrt/imagebuilder.sh <source:branch>
+#          ./config-openwrt/arf-wrt/imagebuilder.sh openwrt:21.02.3
 #
 #======================================== Functions list ========================================
 #
@@ -40,8 +40,8 @@
 make_path="${PWD}"
 openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
-custom_files_path="${make_path}/config-openwrt/imagebuilder/files"
-custom_config_file="${make_path}/config-openwrt/imagebuilder/config"
+custom_files_path="${make_path}/config-openwrt/arf-wrt/files"
+custom_config_file="${make_path}/config-openwrt/arf-wrt/config"
 
 # Set default parameters
 STEPS="[\033[95m STEPS \033[0m]"
@@ -177,11 +177,45 @@ rebuild_firmware() {
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
     my_packages="\
+        acpid attr base-files bash bc blkid block-mount blockd bsdtar \
+        busybox bzip2 cgi-io chattr comgt comgt-ncm coremark \
+        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl \
+        dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs \
+        f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn \
+        kmod-brcmfmac kmod-brcmutil libjson-script \
+	\
+        libnetwork losetup lsattr lsblk lscpu mkf2fs \
+        mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt \
+        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe \
+        pv rename resize2fs runc subversion-client subversion-libs tar \
+        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip \
+        uuidgen wget-ssl whereis which wwan xfs-fsck xfs-mkfs xz \
+        xz-utils ziptool zstd \
+        \
+        libiwinfo libiwinfo-data libiwinfo-lua liblua \
+        libubus-lua luci-app-firewall \
+        px5g-wolfssl rpcd rpcd-mod-file rpcd-mod-iwinfo \
+        rpcd-mod-rrdns adb \
+        \
         luci luci-base luci-compat luci-i18n-base-en \
         luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
-        luci-mod-admin-full ttyd \
+        luci-mod-admin-full \
         luci-proto-3g luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
         luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
+        \
+	libpcre2 zlib libxml2 libpthread libgcc1 zoneinfo-core libstdcpp6 libzip-openssl \
+	libopenssl1.1 libgnutls \
+	libnettle8 libgmp10 libatomic1 libmbedtls12 oniguruma5 zoneinfo-asia \
+	\
+        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-net-cdc-eem \
+        kmod-usb-net-cdc-subset kmod-nls-base kmod-usb-core kmod-usb-net \
+        kmod-usb-net-cdc-ether kmod-usb2 \
+        \
+        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils kmod-ath kmod-ath9k \
+        kmod-ath9k-htc kmod-cfg80211 kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
+        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
+        \
+        luci-app-amlogic luci-i18n-amlogic-zh-cn \
         \
         ${config_list} \
         "
