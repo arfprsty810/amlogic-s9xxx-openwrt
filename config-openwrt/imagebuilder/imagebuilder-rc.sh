@@ -27,7 +27,7 @@
 #======================================== Functions list ========================================
 #
 # error_msg               : Output error message
-# download_imagebuilder   : Downloading OpenWrt ImageBuilder
+# download_imagebuilder   : Downloading OpenWrt-rc ImageBuilder
 # adjust_settings         : Adjust related file settings
 # custom_packages         : Add custom packages
 # custom_config           : Add custom config
@@ -40,8 +40,8 @@
 make_path="${PWD}"
 openwrt_dir="openwrt"
 imagebuilder_path="${make_path}/${openwrt_dir}"
-custom_files_path="${make_path}/config-openwrt/arf-wrt/files"
-custom_config_file="${make_path}/config-openwrt/arf-wrt/config"
+custom_files_path="${make_path}/config-openwrt/imagebuilder/files"
+custom_config_file="${make_path}/config-openwrt/imagebuilder/config"
 
 # Set default parameters
 STEPS="[\033[95m STEPS \033[0m]"
@@ -66,8 +66,6 @@ download_imagebuilder() {
     # Downloading imagebuilder files
     if [[ "${op_sourse}" == "openwrt" ]]; then
         download_file="https://downloads.openwrt.org/releases/${op_branch}/targets/armsr/armv8/openwrt-imagebuilder-${op_branch}-armsr-armv8.Linux-x86_64.tar.xz"
-    else
-        download_file="https://downloads.immortalwrt.org/releases/${op_branch}/targets/armvirt/64/immortalwrt-imagebuilder-${op_branch}-armvirt-64.Linux-x86_64.tar.xz"
     fi
     wget -q ${download_file}
     [[ "${?}" -eq "0" ]] || error_msg "Wget download failed: [ ${download_file} ]"
@@ -224,7 +222,7 @@ rebuild_firmware() {
     make image PROFILE="Default" PACKAGES="${my_packages}" FILES="files"
 
     sync && sleep 3
-    echo -e "${INFO} [ openwrt/bin/targets/armvirt/64 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
+    echo -e "${INFO} [ openwrt/bin/targets/targets/armsr/armv8 ] directory status: $(ls bin/targets/*/* -l 2>/dev/null)"
     echo -e "${SUCCESS} The rebuild is successful, the current path: [ ${PWD} ]"
 }
 
