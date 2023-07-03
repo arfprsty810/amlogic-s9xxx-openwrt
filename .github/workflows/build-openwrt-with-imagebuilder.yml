@@ -206,10 +206,18 @@ on:
           - flippy
           - dev
           - beta
+      image_builder:
+        description: "Set the config imagebuilder."
+        required: false
+        default: "config-openwrt/imagebuilder/imagebuilder.sh"
+        type: choice
+        options:
+          - config-openwrt/imagebuilder/imagebuilder.sh
+          - config-openwrt/imagebuilder/imagebuilder-rc.sh
           
 env:
   TZ: America/New_York
-  IMAGEBUILDER_SH: config-openwrt/imagebuilder/imagebuilder.sh
+  IMAGEBUILDER_SH: ${{ inputs.image_builder }}
 
 jobs:
   build:
